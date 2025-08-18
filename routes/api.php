@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Private\Admin\CityController;
 use App\Http\Controllers\Api\Public\AuthController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
@@ -13,10 +14,11 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-
 // Routes de test
 Route::prefix('test')->group(function () {
     Route::get('/hello', [TestController::class, 'helloWorld']);
     Route::post('/echo', [TestController::class, 'echoText']);
     Route::get('/echo/{text}', [TestController::class, 'echoUrl']);
 });
+
+Route::apiResource('cities', CityController::class); // CRUD pour les villes
